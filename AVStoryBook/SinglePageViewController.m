@@ -37,6 +37,21 @@
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
+#pragma mark - Image Picker
+
+-(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    
+    UIImage *imagePicked = info[UIImagePickerControllerOriginalImage];
+    self.singlePageImageView.image = imagePicked;
+    self.singlePageImageView.contentMode = UIViewContentModeScaleAspectFit;
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - Set Up
 
 - (void)setUpView {
