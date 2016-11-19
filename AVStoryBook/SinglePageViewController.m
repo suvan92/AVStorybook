@@ -21,7 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setUpView];
 }
 
 
@@ -31,5 +31,9 @@
 - (IBAction)selectImageButton:(UIButton *)sender {
 }
 
+#pragma mark - Set Up
+
+- (void)setUpView {
+    self.singlePageImageView.layer.borderWidth = 2;}
 
 @end
