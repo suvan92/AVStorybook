@@ -9,7 +9,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import "SinglePageViewController.h"
 
-@interface SinglePageViewController ()
+@interface SinglePageViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *singlePageImageView;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
@@ -29,6 +29,12 @@
 }
 
 - (IBAction)selectImageButton:(UIButton *)sender {
+    
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    imagePicker.delegate = self;
+    
+    [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
 #pragma mark - Set Up
