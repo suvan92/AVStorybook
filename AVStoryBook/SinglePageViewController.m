@@ -8,12 +8,15 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import "SinglePageViewController.h"
+#import "SinglePageData.h"
 
 @interface SinglePageViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *singlePageImageView;
+
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic, strong) AVAudioRecorder *audioRecorder;
+@property (nonatomic, strong) SinglePageData *pageData;
 
 @end
 
@@ -22,6 +25,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUpView];
+    
+    self.pageData = [[SinglePageData alloc] init];
 }
 
 
@@ -46,6 +51,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
     
     UIImage *imagePicked = info[UIImagePickerControllerOriginalImage];
+    self.pageData.pageImage = imagePicked;
     self.singlePageImageView.image = imagePicked;
     self.singlePageImageView.contentMode = UIViewContentModeScaleAspectFit;
     
@@ -55,6 +61,11 @@
 #pragma mark - Set Up
 
 - (void)setUpView {
-    self.singlePageImageView.layer.borderWidth = 2;}
+    self.singlePageImageView.layer.borderWidth = 2;
+}
+
+- (void)setUpAudioStuff {
+    self.audioPlayer = [[AVAudioPlayer alloc] init];
+}
 
 @end
